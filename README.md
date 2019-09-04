@@ -24,7 +24,7 @@ Lembrando que se utilizar outro banco de dados, deve-se adicionar as dependencia
 
 
 Caso for rodar o projeto em Docker e quiser utilizar um banco existente, deve-se editar o arquivo `docker-compose.yml`, na sessão `services.app.environment` os items relacionados às configurações acima.
-Além disso, pode comentar a sessão correspondente a `services. postgres`.
+Além disso, pode remover a sessão correspondente a `services. postgres`.
 
 ### Instalação das dependências
 Caso rodar o projeto localmente, digite no terminal:
@@ -44,7 +44,7 @@ $ make build
 ### Configurações iniciais
 Caso rodar o projeto localmente, será necessário executar as migrações:
 ```
-$ python -c "from src.db.manager import setup_database; setup_database()"
+$ python -c "from ilikedthis.db.manager import setup_database; setup_database()"
 ```
 
 Caso utilizar Docker:
@@ -56,7 +56,7 @@ $ make migrate
 ### Rodando o projeto
 Caso a instalação foi em ambiente local, basta executar:
 ```
-$ gunicorn src.wsgi:app
+$ gunicorn ilikedthis.wsgi:app
 ```
 
 Caso você estiver utilizando o Docker:
@@ -67,13 +67,15 @@ $ make run
 Esse processo irá iniciar a aplicação e irá disponibiliza-la no endereço [http://localhost:8000](http://localhost:8000).
 
 ## Rodando os testes
-A aplicação está coberta por testes de integração. O runner utilizado é o _pytest_.
-Para rodar os testes, será preciso instalar as dependências de desenvolvimento:
-```
-$ pip install -r requirements-dev.txt```
-```
+A aplicação está coberta por testes de integração e o runner utilizado é o _pytest_.
 
-Para executar os testes em uma instalação local:
+
+Para executar os testes em uma instalação local, será preciso instalar as dependências de desenvolvimento:
+```
+$ pip install -r requirements-dev.txt
+```
+E executar o _pytest_:
+
 ```
 $ pytest
 ```
