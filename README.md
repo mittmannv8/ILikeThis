@@ -84,7 +84,7 @@ $ make test
 ```
 
 ## Documentação da API
-A documentação da API está localizada em [./docs/API_specification](./docs/API_specification)
+A documentação da API está localizada em [./docs/API_specification](./docs/API_specification.md)
 
 
 ## TODO
