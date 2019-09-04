@@ -1,9 +1,8 @@
-import json
 import logging
 
 import falcon
 from sqlalchemy.exc import IntegrityError
-from src.db.models import Customer
+from ilikedthis.db.models import Customer
 
 
 def customer_serializer(customer):

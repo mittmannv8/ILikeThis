@@ -7,7 +7,7 @@ def test_create_customer(client):
         'name': 'Luke Skywalwer',
         'email': 'luke_jedi@jedimail.force'
     }
-    result = client.simulate_post('/customers', json=payload)
+    result = client.simulate_post('/api/customers', json=payload)
 
     assert result.status_code == 201, 'POST com sucesso retorna 201'
     assert result.json.get('name') == payload['name']
@@ -19,25 +19,25 @@ def test_email_must_be_unique(client):
         'name': 'Obi-Wan Kenobi',
         'email': 'kenobi.obi-wan@jedimail.force'
     }
-    result = client.simulate_post('/customers', json=payload)
+    result = client.simulate_post('/api/customers', json=payload)
     assert result.status_code == 201
 
     payload = {
         'name': 'Yoda',
         'email': 'kenobi.obi-wan@jedimail.force'
     }
-    result = client.simulate_post('/customers', json=payload)
+    result = client.simulate_post('/api/customers', json=payload)
     assert result.status_code == 400, 'O POST deve falhar se o email existir'
     data = result.json
     assert len(data) == 1, 'Somente o primeiro POST deve criar cliente'
 
-    result = client.simulate_get('/customers')
+    result = client.simulate_get('/api/customers')
 
 
 def test_get_list_of_customers(client, customer):
     """Dado um cliente já criado, valida a API de listagem de clientes."""
     customer = customer
-    result = client.simulate_get('/customers')
+    result = client.simulate_get('/api/customers')
     assert result.status_code == 200
 
     data = result.json
@@ -49,7 +49,7 @@ def test_get_list_of_customers(client, customer):
 def test_get_detail_of_customer(client, customer):
     """Dado um cliente já criado, validar a API de detalhes de um cliente."""
     customer = customer
-    result = client.simulate_get(f'/customer/{customer.id}')
+    result = client.simulate_get(f'/api/customer/{customer.id}')
     assert result.status_code == 200
 
     data = result.json
@@ -59,7 +59,7 @@ def test_get_detail_of_customer(client, customer):
 
 def test_should_return_404_for_inexistent_customer(client, customer_anakin):
     """Dado um ID inválido, a API deve retornar 404."""
-    result = client.simulate_get('/customer/99999')
+    result = client.simulate_get('/api/customer/99999')
     assert result.status_code == 404, 'ID 99999 não deve existir'
     assert result.json is None, 'Nenhum dado deve ser retornado'
 
@@ -67,7 +67,7 @@ def test_should_return_404_for_inexistent_customer(client, customer_anakin):
 def test_update_customer(client, customer_anakin):
     """Dado um cliente já criado, validar a API de update de clientes."""
     customer = customer_anakin
-    url = f'/customer/{customer.id}'
+    url = f'/api/customer/{customer.id}'
     payload = {
         'name': 'Darth Vader',
         'email': 'lorde_vader@galactic_republic.gov'
@@ -94,12 +94,12 @@ def test_update_customer(client, customer_anakin):
 
 def test_cannot_update_to_an_existing_email(client, customer, customer_anakin):
     """Não deve ser possível alterar o email para um existente."""
-    url = f'/customer/{customer.id}'
+    url = f'/api/customer/{customer.id}'
     payload = {
         'email': customer_anakin.email
     }
 
-    result = client.simulate_get('/customers')
+    result = client.simulate_get('/api/customers')
     assert isinstance(result.json, list)
     assert len(result.json) == 2
 
@@ -108,7 +108,7 @@ def test_cannot_update_to_an_existing_email(client, customer, customer_anakin):
 
 
 def test_delete_customer(client, customer):
-    url = f'/customer/{customer.id}'
+    url = f'/api/customer/{customer.id}'
 
     result = client.simulate_delete(url)
     assert result.status_code == 200

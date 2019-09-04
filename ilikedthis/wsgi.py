@@ -1,4 +1,4 @@
-from src.app import get_session, create_app
+from ilikedthis.app import create_app, get_session
 
 session = get_session()
 app = create_app(session())

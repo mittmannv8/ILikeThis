@@ -30,8 +30,8 @@ def drop_tables(engine):
 
 
 def setup_database(engine=engine):
-    models.Base.metadata.create_all(engine)
-    migrate()
+    migrate(engine)
 
-def migrate():
+
+def migrate(engine=engine):
     models.Base.metadata.create_all(engine)

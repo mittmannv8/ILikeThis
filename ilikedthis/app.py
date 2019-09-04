@@ -22,10 +22,10 @@ def create_app(session=None):
 
     # Resources
     api.add_route('/health', HealthResource())
-    api.add_route('/customers', customers.CustomersResource())
-    api.add_route('/customer/{customer_id}', customers.CustomerResource())
-    api.add_route('/customer/{customer_id}/products',
+    api.add_route('/api/customers', customers.CustomersResource())
+    api.add_route('/api/customer/{customer_id}', customers.CustomerResource())
+    api.add_route('/api/customer/{customer_id}/products',
                   products.ProductsResource())
-    api.add_route('/customer/{customer_id}/product/{product_id}',
+    api.add_route('/api/customer/{customer_id}/product/{product_id}',
                   products.ProductResource())
     return api

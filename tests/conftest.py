@@ -3,9 +3,9 @@ import pytest
 from falcon import testing
 from sqlalchemy import create_engine
 
-from src import app
-from src.db.manager import get_session, setup_database, drop_tables
-from src.db.models import Customer
+from ilikedthis import app
+from ilikedthis.db.manager import drop_tables, get_session, setup_database
+from ilikedthis.db.models import Customer
 
 
 engine = create_engine('sqlite:///db_test.sqlite')
@@ -40,7 +40,8 @@ def setup_database_migration():
 def client(session):
     """Fixture para usar testar as chamadas de API do Falcon, usando a base de
     dados de teste."""
-    return testing.TestClient(app.create_app(session))
+    api = app.create_app(session)
+    return testing.TestClient(api, headers={'Authorization': 'Token abc123'})
 
 
 @pytest.fixture(scope='function')

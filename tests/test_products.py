@@ -1,7 +1,7 @@
 import pytest
 from unittest import mock
 
-from src.db.models import Favorite
+from ilikedthis.db.models import Favorite
 
 PRODUCTS_EXTERNAL_API = [
     {
@@ -23,7 +23,7 @@ PRODUCTS_EXTERNAL_API = [
 
 def setup_module(module):
     # cria um mock para o restorno da API externa
-    requests = mock.patch('src.services.products.requests.get')
+    requests = mock.patch('ilikedthis.services.products.requests.get')
     mock_start = requests.start()
     mock_start.return_value.json.return_value = PRODUCTS_EXTERNAL_API[0]
 
@@ -39,7 +39,7 @@ def favorite(session, customer):
 
 
 def test_get_product_list(client, customer, favorite):
-    result = client.simulate_get(f'/customer/{customer.id}/products')
+    result = client.simulate_get(f'/api/customer/{customer.id}/products')
     assert result.status_code == 200
 
     data = result.json
@@ -54,7 +54,7 @@ def test_get_product_list(client, customer, favorite):
 
 
 def test_should_return_empty_list_for_new_user(client, customer):
-    result = client.simulate_get(f'/customer/{customer.id}/products')
+    result = client.simulate_get(f'/api/customer/{customer.id}/products')
     assert result.status_code == 200
     data = result.json
     assert isinstance(data['products'], list)
@@ -62,7 +62,7 @@ def test_should_return_empty_list_for_new_user(client, customer):
 
 
 def test_insert_product_in_an_inexistent_favorite_list(client, customer):
-    url = f'/customer/{customer.id}/products'
+    url = f'/api/customer/{customer.id}/products'
 
     payload = {
         'product': PRODUCTS_EXTERNAL_API[0]['id'],
@@ -81,7 +81,7 @@ def test_insert_product_in_an_inexistent_favorite_list(client, customer):
 def test_should_product_unique_in_customer_list(client, customer, favorite):
     assert len(customer.favorites) == 1, 'customer must have an product to test'
 
-    url = f'/customer/{customer.id}/products'
+    url = f'/api/customer/{customer.id}/products'
     payload = {
         'product': favorite.product
     }
@@ -95,7 +95,7 @@ def test_should_product_unique_in_customer_list(client, customer, favorite):
 
 
 def test_get_details_of_favorite_product(client, customer, favorite):
-    url = f'/customer/{customer.id}/product/{favorite.product}'
+    url = f'/api/customer/{customer.id}/product/{favorite.product}'
     result = client.simulate_get(url)
     assert result.status_code == 200
     data = result.json
@@ -104,7 +104,7 @@ def test_get_details_of_favorite_product(client, customer, favorite):
 
 
 def test_remove_product_from_favorite_list(client, customer, favorite):
-    url = f'/customer/{customer.id}/product/{favorite.product}'
+    url = f'/api/customer/{customer.id}/product/{favorite.product}'
     result = client.simulate_delete(url)
     assert result.status_code == 200
 

@@ -1,7 +1,7 @@
 import falcon
 
-from src.db.models import Customer, Favorite
-from src.services.products import get_products_details
+from ilikedthis.db.models import Customer, Favorite
+from ilikedthis.services.products import get_products_details
 
 
 class ProductResourceBase:

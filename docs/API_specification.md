@@ -7,7 +7,7 @@ A autorização é feita atráves de Token estático via headers.
 Authorization: Token abc12
 ```
 
-### GET /customers
+### GET /api/customers
 Endpoint que retorna uma lista de clientes cadastrados.
 
 **Response 200**
@@ -20,7 +20,7 @@ Endpoint que retorna uma lista de clientes cadastrados.
       }
     ]
 
-### POST /customers
+### POST /api/customers
 Endpoint para cadastro de clientes.
 
 **Payload**
@@ -38,7 +38,7 @@ Endpoint para cadastro de clientes.
         "email": "luke_jedi@jedimail.force"
     }
 
-### GET /customer/{id}
+### GET /api/customer/{id}
 Endpoint que retorna os detalhes de um cliente cadastrado.
 
 **Response 200**
@@ -49,7 +49,7 @@ Endpoint que retorna os detalhes de um cliente cadastrado.
         "email": "luke_jedi@jedimail.force"
     }
 
-### PUT /customer/{id}
+### PUT /api/customer/{id}
 Endpoint para atualizar os dados de um cliente cadastrado.
 
 **Payload**
@@ -67,14 +67,14 @@ Endpoint para atualizar os dados de um cliente cadastrado.
         "email": "skywalker.luke@jedimail.force"
     }
 
-### DELETE /customer/{id}
+### DELETE /api/customer/{id}
 Endpoint para remover um cliente cadastrado.
 
 **Response 200**
 
     No content
 
-### GET /customer/{id}/products
+### GET /api/customer/{id}/products
 Endpoint que retorna a lista de produtos favoritos de um cliente.
 
 **Response 200**
@@ -93,7 +93,7 @@ Endpoint que retorna a lista de produtos favoritos de um cliente.
     }
         
 
-### PUT /customer/{id}/products
+### PUT /api/customer/{id}/products
 Endpoint que insere um produto na lista de produtos favoritos de um cliente.
 
 **Payload**
@@ -106,7 +106,7 @@ Endpoint que insere um produto na lista de produtos favoritos de um cliente.
 
         No content
 
-### GET /customer/{id}/product/{uuid}
+### GET /api/customer/{id}/product/{uuid}
 Endpoint que retorna os detalhes de um produto da lista de produtos favoritos de um cliente.
 
 **Response 200**
@@ -122,7 +122,7 @@ Endpoint que retorna os detalhes de um produto da lista de produtos favoritos de
       }
     }
 
-### DELETE /customer/{id}/product/{uuid}
+### DELETE /api/customer/{id}/product/{uuid}
 Endpoint que remove um produto da lista de produtos favoritos de um cliente.
 
 **Response 200**
