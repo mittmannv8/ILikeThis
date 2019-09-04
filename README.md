@@ -91,13 +91,14 @@ A documentação da API está localizada em [./docs/API_specification](./docs/AP
 A decisão de utilizar essas ferramentas partiu de 2 pontos: performance e aprender mais sobre essas tecnologias.
 Por isso, alguns pontos ficaram pendentes e precisam ser melhorados ou mesmo implementados.
 
-    - Autenticação e autorização de verdade. A estrutura está preparada, mas é necessário implementar um serviço de autorização existente ou criar uma estrutura de autenticação e geração de tokens de autorização;
-    - Melhorar a consulta e estruturação dos dados de produtos da API externa. Algumas arquiteturas possíveis:
-        - Consulta assíncrona para as requests. Eu até implementei assim utilizando asyncio e aiohttp, mas desisti pois a API de produtos não aguentou (sorry hahahaha);
-        - Utilização de cache da resposta (não muito efetivo, mas diminuiria o tempo de persistência dos dados, evitando problemas com atualizações);
-        - Armazenamento dos dados de produtos. A resposta para o usuário da API seria mais rápida, além de evitar sobrecarga na API de produtos, porém dependeria de uma arquitetura de webkooks ou alguma estrutura de fila para atualizar os dados ou alguma rotina para atualizar a lista de produtos;
-    - Implementar alguma estrutura de serialização ou schemas;
-    - Ferramenta de migração dos modelos de dados do SQLAlchemy;
-    - Implementar testes unitários;
-    - Implementar o campo UUID para externalizar os objetos e evitar expor o ID interno;
+- Autenticação e autorização de verdade. A estrutura está preparada, mas é necessário implementar um serviço de autorização existente ou criar uma estrutura de autenticação e geração de tokens de autorização;
+- Melhorar a consulta e estruturação dos dados de produtos da API externa. Algumas arquiteturas possíveis:
+    - Consulta assíncrona para as requests. Eu até implementei assim utilizando asyncio e aiohttp, mas desisti pois a API de produtos não aguentou (sorry hahahaha);
+    - Utilização de cache da resposta (não muito efetivo, mas diminuiria o tempo de persistência dos dados, evitando problemas com atualizações);
+    - Armazenamento dos dados de produtos. A resposta para o usuário da API seria mais rápida, além de evitar sobrecarga na API de produtos, porém dependeria de uma arquitetura de webkooks ou alguma estrutura de fila para atualizar os dados ou alguma rotina para atualizar a lista de produtos;
+- Implementar alguma estrutura de serialização ou schemas;
+- Ferramenta de migração dos modelos de dados do SQLAlchemy;
+- Paginação na API;
+- Implementar testes unitários;
+- Implementar o campo UUID para externalizar os objetos e evitar expor o ID interno;
 
