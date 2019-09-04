@@ -9,6 +9,7 @@ Authorization: Token abc12
 
 ### GET /customers
 Endpoint que retorna uma lista de clientes cadastrados.
+
 **Response 200**
 
     [
@@ -21,6 +22,7 @@ Endpoint que retorna uma lista de clientes cadastrados.
 
 ### POST /customers
 Endpoint para cadastro de clientes.
+
 **Payload**
 
     {
@@ -38,6 +40,7 @@ Endpoint para cadastro de clientes.
 
 ### GET /customer/{id}
 Endpoint que retorna os detalhes de um cliente cadastrado.
+
 **Response 200**
 
     {
@@ -48,6 +51,7 @@ Endpoint que retorna os detalhes de um cliente cadastrado.
 
 ### PUT /customer/{id}
 Endpoint para atualizar os dados de um cliente cadastrado.
+
 **Payload**
 
     {
@@ -65,12 +69,14 @@ Endpoint para atualizar os dados de um cliente cadastrado.
 
 ### DELETE /customer/{id}
 Endpoint para remover um cliente cadastrado.
+
 **Response 200**
 
     No content
 
 ### GET /customer/{id}/products
 Endpoint que retorna a lista de produtos favoritos de um cliente.
+
 **Response 200**
 
     {
@@ -89,17 +95,20 @@ Endpoint que retorna a lista de produtos favoritos de um cliente.
 
 ### PUT /customer/{id}/products
 Endpoint que insere um produto na lista de produtos favoritos de um cliente.
+
 **Payload**
 
     {
         "product": "1bf0f365-fbdd-4e21-9786-da459d78dd1f"
     }
+
 **Response 200**
 
         No content
 
 ### GET /customer/{id}/product/{uuid}
 Endpoint que retorna os detalhes de um produto da lista de produtos favoritos de um cliente.
+
 **Response 200**
 
     {
@@ -115,6 +124,7 @@ Endpoint que retorna os detalhes de um produto da lista de produtos favoritos de
 
 ### DELETE /customer/{id}/product/{uuid}
 Endpoint que remove um produto da lista de produtos favoritos de um cliente.
+
 **Response 200**
 
     No content
