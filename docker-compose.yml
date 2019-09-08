@@ -3,7 +3,7 @@ services:
   app:
     build: .
     container_name: luizalabs
-    command: gunicorn -b 0.0.0.0 src.wsgi:app
+    command: gunicorn -b 0.0.0.0 ilikedthis.wsgi:app
     environment:
       - DATABASE_PROTOCOL=postgresql+psycopg2
       - DATABASE_HOST=postgres
